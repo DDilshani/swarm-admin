@@ -128,5 +128,3 @@ class MQTTBox extends PureComponent {
 }
 
 export default MQTTBox;
-
-
