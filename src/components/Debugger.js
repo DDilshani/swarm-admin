@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Select from 'react-select';
 import { Tab, Row, Col, Nav } from 'react-bootstrap'; // Tabs
 import { Button } from 'reactstrap';
 import RobotControl from './robot/ControlComponent';
-import MQTTBox from './robot/MQTTBoxComponent';
+// import MQTTBox from './robot/MQTTBox';
+import MQTTBox from './robot/MBox';
 
 const options = [
     { value: '1', label: '1' },
@@ -17,7 +18,7 @@ const options = [
     { value: '9', label: '9' }
 ];
 
-class Robots extends Component {
+class Debugger extends PureComponent {
     state = {
         selectedOption: null
     };
@@ -34,7 +35,7 @@ class Robots extends Component {
                     <div className="col-12">
                         <div className="container striped bordered hover">
                             <div className="row  d-flex align-items-center">
-                                <div className="col-2 col-sm-2">Robots</div>
+                                <div className="col-2 col-sm-2">Debugger</div>
                                 <div className="col-2 col-sm-4">
                                     <Select
                                         style={{ width: '30px' }}
@@ -157,4 +158,4 @@ class Robots extends Component {
     }
 }
 
-export default Robots;
+export default Debugger;
