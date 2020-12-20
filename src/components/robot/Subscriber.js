@@ -13,7 +13,7 @@ import {
     ListGroup
 } from 'reactstrap';
 
-const MQTTBox = (props) => {
+const Subscriber = (props) => {
     const { id, client: mqttClient } = props;
     const [topic, setTopic] = useState('');
     const [subscribed, setSubscribed] = useState(false);
@@ -157,4 +157,4 @@ const MQTTBox = (props) => {
     // }
 };
 
-export default MQTTBox;
+export default Subscriber;

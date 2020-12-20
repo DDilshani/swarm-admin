@@ -57,6 +57,21 @@ class MBox extends Component {
             }
         );
     };
+    deletepub = (index) => {
+        const prevPublishers = Object.assign([], this.state.publishers);
+        prevPublishers.splice(index, 1);
+        this.setState({
+            publishers: prevPublishers
+        });
+    };
+
+    deletesub = (index) => {
+        const prevSubscribers = Object.assign([], this.state.subscribers);
+        prevSubscribers.splice(index, 1);
+        this.setState({
+            subscribers: prevSubscribers
+        });
+    };
 
     render() {
         return (
@@ -77,7 +92,8 @@ class MBox extends Component {
                                     Add Publisher
                                 </Button>
                                 {this.state.publishers.map((pub, index) => {
-                                    return <Publisher key={index} />;
+                                    return <Publisher key={index} 
+                                    deletepub={this.deletepub.bind(this, index)}/>;
                                 })}
                             </CardBody>
                         </Card>
@@ -99,6 +115,7 @@ class MBox extends Component {
                                             key={index}
                                             id={sub.id}
                                             client={sub.client}
+                                            deletesub={this.deletesub.bind(this, index)}
                                         />
                                     );
                                 })}
