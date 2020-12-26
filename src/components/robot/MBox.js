@@ -16,7 +16,11 @@ class MBox extends Component {
             publishers: [],
             pubCount: 0,
             subscribers: [],
-            subCount: 0
+            subCount: 0,
+            pubtopic: this.props.pub_topic,
+            pubmsg: this.props.pub_messagebox,
+            subtopic: '',
+            submsg: ''
         };
     }
 
@@ -27,6 +31,7 @@ class MBox extends Component {
         };
         const pubs = this.state.publishers;
         const pubCount = this.state.pubCount;
+
         pubs.push(pub);
         this.setState(
             {
@@ -57,6 +62,7 @@ class MBox extends Component {
             }
         );
     };
+
     deletepub = (index) => {
         const prevPublishers = Object.assign([], this.state.publishers);
         prevPublishers.splice(index, 1);
@@ -64,6 +70,8 @@ class MBox extends Component {
             publishers: prevPublishers
         });
     };
+
+   
 
     deletesub = (index) => {
         const prevSubscribers = Object.assign([], this.state.subscribers);
@@ -73,12 +81,21 @@ class MBox extends Component {
         });
     };
 
+    publishmsg(topic, msg) {
+        console.log(topic);
+        console.log(msg);
+    }
+
+    subscribetopic(topic){
+        console.log(topic);
+    }
+
     render() {
         return (
             <div>
                 <p>
                     A Sandbox for testing MQTT messages and responses that are unique to
-                    "pera-swarm". You can add many publishers/subscribers as you want.
+                    "pera-swarm". Add or delete many publishers or subscribers as want.
                 </p>
                 <Row>
                     <Col>
@@ -86,14 +103,16 @@ class MBox extends Component {
                             <CardBody>
                                 <CardTitle tag="h5">Publishers</CardTitle>
                                 <CardText>
-                                    Add Publishers by clicking the button below.
+                                    Add Publishers
                                 </CardText>
                                 <Button color="success" onClick={this.addPublisher}>
                                     Add Publisher
                                 </Button>
                                 {this.state.publishers.map((pub, index) => {
-                                    return <Publisher key={index} 
-                                    deletepub={this.deletepub.bind(this, index)}/>;
+                                    return <Publisher key={index}
+                                        deletepub={this.deletepub.bind(this, index)}
+                                        publishmsg={this.publishmsg.bind(this)}
+                                    />;
                                 })}
                             </CardBody>
                         </Card>
@@ -103,8 +122,7 @@ class MBox extends Component {
                             <CardBody>
                                 <CardTitle tag="h5">Subscribers</CardTitle>
                                 <CardText>
-                                    Add Subscribers by clickng the button below for a
-                                    given topic.
+                                    Add Subscribers for a given topic.
                                 </CardText>
                                 <Button color="warning" onClick={this.addSubscriber}>
                                     Add Subscriber
@@ -116,6 +134,7 @@ class MBox extends Component {
                                             id={sub.id}
                                             client={sub.client}
                                             deletesub={this.deletesub.bind(this, index)}
+                                            subscribetopic={this.subscribetopic.bind(this)}
                                         />
                                     );
                                 })}

@@ -3,8 +3,10 @@ import Select from 'react-select';
 import { Tab, Row, Col, Nav } from 'react-bootstrap'; // Tabs
 import { Button } from 'reactstrap';
 import RobotControl from './robot/ControlComponent';
-// import MQTTBox from './robot/MQTTBox';
 import MQTTBox from './robot/MBox';
+import Sensor from './robot/SensorComponent';
+import Log from './robot/LogComponent';
+import NeoPixelLed from './robot/NeoPixelLedComponent';
 
 const options = [
     { value: '1', label: '1' },
@@ -76,6 +78,11 @@ class Debugger extends PureComponent {
                                                     </Nav.Link>
                                                 </Nav.Item>
                                                 <Nav.Item>
+                                                    <Nav.Link eventKey="neopixelled">
+                                                        Neo Pixel Led
+                                                    </Nav.Link>
+                                                </Nav.Item>
+                                                <Nav.Item>
                                                     <Nav.Link eventKey="mqttbox">
                                                         MQTT Box
                                                     </Nav.Link>
@@ -105,33 +112,15 @@ class Debugger extends PureComponent {
                                                 </Tab.Pane>
                                                 <Tab.Pane eventKey="sensors">
                                                     <h5>Sensors</h5>
-                                                    <p>
-                                                        At vero eos et accusamus et iusto
-                                                        odio dignissimos ducimus qui
-                                                        blanditiis praesentium voluptatum
-                                                        deleniti atque corrupti quos
-                                                        dolores et quas molestias
-                                                        excepturi sint occaecati
-                                                        cupiditate non provident,
-                                                        similique sunt in culpa qui
-                                                        officia deserunt mollitia animi,
-                                                        id est laborum et dolorum fuga.
-                                                    </p>
+                                                    <Sensor/>
                                                 </Tab.Pane>
                                                 <Tab.Pane eventKey="logs">
                                                     <h5>Logs</h5>
-                                                    <p>
-                                                        At vero eos et accusamus et iusto
-                                                        odio dignissimos ducimus qui
-                                                        blanditiis praesentium voluptatum
-                                                        deleniti atque corrupti quos
-                                                        dolores et quas molestias
-                                                        excepturi sint occaecati
-                                                        cupiditate non provident,
-                                                        similique sunt in culpa qui
-                                                        officia deserunt mollitia animi,
-                                                        id est laborum et dolorum fuga.
-                                                    </p>
+                                                    <Log/>
+                                                </Tab.Pane>
+                                                <Tab.Pane eventKey="neopixelled">
+                                                    <h5>Neo Pixel Led</h5>
+                                                    <NeoPixelLed />
                                                 </Tab.Pane>
                                                 <Tab.Pane eventKey="mqttbox">
                                                     <h5>MQTT Box</h5>
@@ -154,6 +143,7 @@ class Debugger extends PureComponent {
                     </div>
                 </div>
             </div>
+        
         );
     }
 }

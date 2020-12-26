@@ -12,8 +12,7 @@ import {
 import { TOPIC_INFO } from '../../config/topics';
 import { bindConnection } from '../../services/mqtt';
 
-class Publisher extends PureComponent {
-
+export default class Publisher extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -23,6 +22,7 @@ class Publisher extends PureComponent {
         };
         this.client = bindConnection();
         this.handleInputChange = this.handleInputChange.bind(this);
+
         this.publisher = this.publisher.bind(this);
     }
 
@@ -54,25 +54,24 @@ class Publisher extends PureComponent {
             [name]: value
         });
     }
-
-    publisher(event) {
+    publisher() {
         console.log('publish');
-        event.preventDefault();
-        this.client.publish(this.state.pub_topic, this.state.pub_messagebox);
-        if (this.state.sub_topic === this.state.pub_topic) {
-            document.getElementById("sub_messagebox").innerHTML = this.state.pub_messagebox;
-        }
+        //console.log(this.state.pub_messagebox);
+        //console.log(this.state.pub_topic);
+        var topic = this.state.pub_topic;
+        var msg = this.state.pub_messagebox
+        this.props.publishmsg(topic,msg);
     }
 
     render() {
         return (
             <div>
-                <Card style={{ borderColor: "#218838" }}>
+                <Card style={{ borderColor: "#218838", marginTop: "15px" }}>
                     <CardBody style={{ paddingBottom: "0px", paddingTop: "0px", margin: "0px" }}>
                         <CardTitle tag="h5" style={{ paddingTop: "5px", margin: "0px" }}>Publisher
                         <Button close onClick={this.props.deletepub} />
                         </CardTitle>
-                        <Form onSubmit={this.publisher}>
+                        <Form onSubmit={this.props.publisher}>
                             <FormGroup row>
                                 <div className="col-2">
                                     <Label htmlFor="pub_topic">
@@ -103,7 +102,7 @@ class Publisher extends PureComponent {
                                 <div className="col-3">
                                     <Button
                                         type="button"
-                                        onClick={this.publisher}
+                                        onClick={() => this.publisher(this.state.pub_topic, this.state.pub_messagebox)}
                                         color="success"
                                         align="right"
                                     >
@@ -112,11 +111,11 @@ class Publisher extends PureComponent {
                                 </div>
                             </FormGroup>
                         </Form>
+
                     </CardBody>
                 </Card>
+
             </div>
         );
     }
 }
-
-export default Publisher;

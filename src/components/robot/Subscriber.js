@@ -84,11 +84,9 @@ const Subscriber = (props) => {
 
     return (
         <div className="my-3">
-            <Card style={{ borderColor: '#E0A800' }}>
-                <CardBody
-                    style={{ paddingBottom: '0px', paddingTop: '0px', margin: '0px' }}
-                >
-                    <CardTitle tag="h5" style={{ paddingTop: '5px', margin: '0px' }}>
+            <Card style={{ borderColor: '#E0A800',marginTop: "15px" }}>
+                <CardBody style={{ paddingBottom: "0px", paddingTop: "0px", margin: "0px" }}>
+                      <CardTitle tag="h5" style={{ paddingTop: "5px", margin: "0px" }}>
                         Subscriber
                         <Button close onClick={props.deletesub} />
                     </CardTitle>
@@ -139,7 +137,8 @@ const Subscriber = (props) => {
                             messages.map((message, index) => {
                                 console.log(message);
                                 return (
-                                    <ListGroupItem
+                                    <ListGroupItem 
+                                        id="sub_messagebox"
                                         // active
                                         tag="button"
                                         action

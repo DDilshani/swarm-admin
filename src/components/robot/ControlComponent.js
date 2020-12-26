@@ -9,7 +9,6 @@ import {
     FormGroup,
     Label,
     Col,
-    Row,
     FormFeedback
 } from 'reactstrap';
 import RangeSlider from 'react-bootstrap-range-slider';
@@ -167,11 +166,9 @@ class RobotControl extends PureComponent {
         return (
             <div>
                 <p>
-                    At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                    blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
-                    et quas molestias excepturi sint occaecati cupiditate non provident,
-                    similique sunt in culpa qui officia deserunt mollitia animi, id est
-                    laborum et dolorum fuga.
+                    Control the robots - create, delete and update x-coordinates, 
+                    y-coordinates and headings of each robots by selecting the particular 
+                    id using this panel.
                 </p>
                 <Card>
                     <CardBody>
@@ -268,8 +265,10 @@ class RobotControl extends PureComponent {
                         </Form>
                     </CardBody>
                 </Card>
+                
                 <br></br>
             </div>
+        
         );
     }
 }
